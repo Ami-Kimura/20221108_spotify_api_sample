@@ -33,22 +33,22 @@ window.addEventListener('load', function() {
     
     
     
-  function fetchAccessToken( code ){
-  let body = "grant_type=authorization_code";
-  body += "&code=" + code;
-  body += "&redirect_uri=" + encodeURI(redirect_uri);
-  body += "&client_id=" + client_id;
-  body += "&client_secret=" + client_secret;
-  callAuthorizationApi(body);
-  }
+function fetchAccessToken( code ){
+let body = "grant_type=authorization_code";
+body += "&code=" + code;
+body += "&redirect_uri=https://ami-kimura.github.io/20221108_spotify_api_sample/result/" + encodeURI(redirectUri);
+body += "&client_id=7abf6edbf6a9478dbd3ae9afaed92dea" + clientId;
+body += "&client_secret=7d334a114fe64263868a18b83a28ca97" + clientSecret;
+callAuthorizationApi(body);
+}
 
-  function refreshAccessToken(){
-  refresh_token = localStorage.getItem("refresh_token");
-  let body = "grant_type=refresh_token";
-  body += "&refresh_token=" + refresh_token;
-  body += "&client_id=" + client_id;
-  callAuthorizationApi(body);
-  }
+function refreshAccessToken(){
+refreshToken = localStorage.getItem("refreshToken");
+let body = "grant_type=refreshToken";
+body += "&refreshToken=AQDtMU25QjEm05DlhGYjgt8M-29Y_hsL-QIM2EBBdk9UZOA7lyAtxgsQrd3PHs5FzPlQrHUU7I6jjpZfMrVAkHwWprLmvVw1BTGNACfImczop4abZ9ohVpVrJrHoE7VamvE" + refreshToken;
+body += "&client_id=7abf6edbf6a9478dbd3ae9afaed92dea" + clientId;
+callAuthorizationApi(body);
+}
     
     
 
