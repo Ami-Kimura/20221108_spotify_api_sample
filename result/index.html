@@ -36,9 +36,9 @@ window.addEventListener('load', function() {
 function fetchAccessToken( code ){
 let body = "grant_type=authorization_code";
 body += "&code=" + code;
-body += "&redirect_uri=https://ami-kimura.github.io/20221108_spotify_api_sample/result/" + encodeURI(redirectUri);
-body += "&client_id=7abf6edbf6a9478dbd3ae9afaed92dea" + clientId;
-body += "&client_secret=7d334a114fe64263868a18b83a28ca97" + clientSecret;
+body += "&redirect_uri=" + encodeURI(redirectUri);
+body += "&client_id=" + clientId;
+body += "&client_secret=" + clientSecret;
 callAuthorizationApi(body);
 }
 
