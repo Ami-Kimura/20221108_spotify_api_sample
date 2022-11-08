@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-500">
+
+    <div class="container mx-auto">
+        <h1 class="text-xl text-white" id="result_status"></h1>
+    </div>
+
+<script>
+
+const clientId = "bc89b7bbdfce4cba822c5198445bf19b";
+const clientSecret = "f0b62632c5a9489e9973b49c9d55e9bc";
+const redirectUri = "https://hiraiwa0324.github.io/API_Spotify/result/";
+const encoded = btoa(clientId + ':' + clientSecret);
+
+const resultStatus = document.getElementById('result_status')
+
+// リダイレクトで取得した ?code のパラメータを取得
+window.addEventListener('load', function() {
+
+    let url = new URL(window.location.href);
+    let params = url.searchParams;
+    let code = params.get('code')
+
+    getToken(code)
+
+});
+
+function getToken(code) {
+
+    if ( !code ) {
+        fetch('https://accounts.spotify.com/api/token',
+            {
+                method: "POST",
+                body: {
+                    code: code,
+                    grant_type: 'authorization_code',
+                    redirect_uri: redirectUri // 実際は飛ばない
+                },
+                headers: {
+                    'Authorization': 'Basic ' + encoded ,
+                    'Content-Type': 'application/json'
+                }
+            }
+        )
+        .then(function (data) {
+            // APIからの返答を変換
+            return data.json();
+        })
+        .then(function (json) {
+            console.log(`json ${json}`)
+            const accessToken = json.access_token
+            const refreshToken = json.refresh_token
+            console.log(`accessToken => ${accessToken}`)
+            console.log(`refreshToken => ${refreshToken}`)
+            resultStatus.innerHTML = '認証成功！';
+        })
+        .catch(error => {
+            resultStatus.innerHTML = '何か問題があるようです';
+        })
+    }
+}
+
+
+
+
+</script>
+</body>
+</html>
