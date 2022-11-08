@@ -45,8 +45,8 @@ callAuthorizationApi(body);
 function refreshAccessToken(){
 refreshToken = localStorage.getItem("refreshToken");
 let body = "grant_type=refreshToken";
-body += "&refreshToken=AQDtMU25QjEm05DlhGYjgt8M-29Y_hsL-QIM2EBBdk9UZOA7lyAtxgsQrd3PHs5FzPlQrHUU7I6jjpZfMrVAkHwWprLmvVw1BTGNACfImczop4abZ9ohVpVrJrHoE7VamvE" + refreshToken;
-body += "&client_id=7abf6edbf6a9478dbd3ae9afaed92dea" + clientId;
+body += "&refreshToken=" + refreshToken;
+body += "&client_id=" + clientId;
 callAuthorizationApi(body);
 }
     
