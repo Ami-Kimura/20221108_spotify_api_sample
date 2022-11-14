@@ -30,27 +30,7 @@ window.addEventListener('load', function() {
     let code = params.get('code')
 
     getToken(code)
-    
-    
-    
-function fetchAccessToken( code ){
-let body = "grant_type=authorization_code";
-body += "&code=" + code;
-body += "&redirect_uri=" + encodeURI(redirectUri);
-body += "&client_id=" + clientId;
-body += "&client_secret=" + clientSecret;
-callAuthorizationApi(body);
-}
-
-function refreshAccessToken(){
-refreshToken = localStorage.getItem("refreshToken");
-let body = "grant_type=refreshToken";
-body += "&refreshToken=" + refreshToken;
-body += "&client_id=" + clientId;
-callAuthorizationApi(body);
-}
-    
-    
+      
 
 });
 
