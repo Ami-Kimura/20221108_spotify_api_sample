@@ -47,7 +47,7 @@ function getToken(code) {
                 },
                 headers: {
                     //'Authorization': 'Basic ' + encoded ,
-                    'Authorization': 'Basic ' +  (new Buffer(client_id + ':' + client_secret).toString('base64')) ,
+                    'Authorization': 'Basic ' +  (new Buffer(clientId + ':' + clientSecret).toString('base64')) ,
                     'Content-Type': 'application/json'
                 }
             }
