@@ -30,29 +30,37 @@ window.addEventListener('load', function() {
     let code = params.get('code')
 
     getToken(code)
-      
 
+
+
+
+ 
 });
 
 function getToken(code) {
+
+
+//console.log(code) 
+
+//console.log(!code)
+        const body = {
+                    code: code,
+                    redirect_uri: redirectUri,
+                    grant_type: 'authorization_code',
+                    client_secret: clientSecret,
+                    client_id: clientId
+                }
+        const sendBody = Object.keys(body).map((key)=>key+"="+encodeURIComponent(body[key])).join("&");
 
     if ( code ) {
         fetch('https://accounts.spotify.com/api/token',
             {
                 method: "POST",
                 body: {
-                    code: code,
-                    redirect_uri: redirectUri,
-                    grant_type: 'authorization_code',
-                    client_secret: clientSecret,
-                    client_id: clientId
-                    //redirect_uri: redirectUri // 実際は飛ばない
+                    sendBody
                 },
                 headers: {
-                //    'Authorization': 'Basic ' + encoded ,
-                    //'Authorization': 'Basic ' +  (new Buffer(clientId + ':' + clientSecret).toString('base64')) ,
                     'Content-Type': 'application/x-www-form-urlencoded'
-                    //'Content-Type': 'application/json'
                 }
             }
         )
@@ -63,7 +71,6 @@ function getToken(code) {
         .then(function (json) {
             console.dir(json)
             console.log(`json.access_token ${json.access_token}`)
-            //console.log(`json ${json}`)
             const accessToken = json.access_token
             const refreshToken = json.refresh_token
             console.log(`accessToken => ${accessToken}`)
@@ -75,6 +82,7 @@ function getToken(code) {
         })
     }
 }
+
 
 
 
