@@ -43,6 +43,7 @@ function getToken(code) {
 //console.log(code) 
 
 //console.log(!code)
+        const method = "POST";
         const body = {
                     code: code,
                     redirect_uri: redirectUri,
@@ -52,16 +53,16 @@ function getToken(code) {
                 }
         // const sendBody = Object.keys(body).map((key)=>key+"="+encodeURIComponent(body[key])).join("&");
         const sendBody = JSON.stringify(body);
+        const headers = {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+        };
     if ( code ) {
         fetch('https://accounts.spotify.com/api/token',
             {
-                method: "POST",
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                body: {
-                    sendBody
-                }
+                method,
+                headers ,
+                sendBody
             }
         )
         .then(function (data) {
