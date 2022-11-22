@@ -66,6 +66,8 @@ function getToken(code) {
                     console.log(json)
                     console.dir(json)
                     console.log(`json.access_token ${json.access_token}`)
+                    const token = json.access_token
+                    console.log(`token => ${token}`)
                 } catch (e) {
 
                 }
