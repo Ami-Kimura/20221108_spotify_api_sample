@@ -51,7 +51,7 @@ function getToken(code) {
                     client_id: clientId
                 }
         // const sendBody = Object.keys(body).map((key)=>key+"="+encodeURIComponent(body[key])).join("&");
-        const sendBody = JSON.stringify(obj);
+        const sendBody = JSON.stringify(body);
     if ( code ) {
         fetch('https://accounts.spotify.com/api/token',
             {
