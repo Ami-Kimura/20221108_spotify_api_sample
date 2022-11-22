@@ -46,8 +46,8 @@ function getToken(code) {
                     redirect_uri: redirectUri // 実際は飛ばない
                 },
                 headers: {
-                    //'Authorization': 'Basic ' + encoded ,
-                    'Authorization': 'Basic ' +  (new Buffer(clientId + ':' + clientSecret).toString('base64')) ,
+                    'Authorization': 'Basic ' + encoded ,
+                    //'Authorization': 'Basic ' +  (new Buffer(clientId + ':' + clientSecret).toString('base64')) ,
                     'Content-Type': 'application/json'
                 }
             }
