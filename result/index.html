@@ -42,8 +42,11 @@ function getToken(code) {
                 method: "POST",
                 body: {
                     code: code,
+                    redirect_uri: redirectUri
                     grant_type: 'authorization_code',
-                    redirect_uri: redirectUri // 実際は飛ばない
+                    client_secret: clientSecret
+                    client_id: clientId
+                    //redirect_uri: redirectUri // 実際は飛ばない
                 },
                 headers: {
                     'Authorization': 'Basic ' + encoded ,
