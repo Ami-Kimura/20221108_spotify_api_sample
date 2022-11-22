@@ -43,45 +43,32 @@ function getToken(code) {
 //console.log(code) 
 
 //console.log(!code)
-        const method = "POST";
-        const body = {
-                    code: code,
-                    redirect_uri: redirectUri,
-                    grant_type: 'authorization_code',
-                    client_secret: clientSecret,
-                    client_id: clientId
+        // const method = "POST";
+        // const body = {
+        //             code: code,
+        //             redirect_uri: redirectUri,
+        //             grant_type: 'authorization_code',
+        //             client_secret: clientSecret,
+        //             client_id: clientId
+        //         }
+                var params = new URLSearchParams()
+                params.append('code', code)
+                params.append('redirect_uri', redirectUri)
+                params.append('grant_type', 'authorization_code')
+                params.append('client_id', clientId)
+                try {
+                    const response = fetch("https://accounts.spotify.com/api/token", {
+                    method: "POST",
+                    body: params        // リクエスト本文にURLSearchParamsを設定
+                    });
+                    const json = response.json();
+                    console.log(json)
+                    console.dir(json)
+                    console.log(`json.access_token ${json.access_token}`)
+                } catch (e) {
+
                 }
-        // const sendBody = Object.keys(body).map((key)=>key+"="+encodeURIComponent(body[key])).join("&");
-        const sendBody = JSON.stringify(body);
-        const headers = {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-        };
-    if ( code ) {
-        fetch('https://accounts.spotify.com/api/token',
-            {
-                method,
-                headers ,
-                sendBody
-            }
-        )
-        .then(function (data) {
-            // APIからの返答を変換
-            return data.json();
-        })
-        .then(function (json) {
-            console.dir(json)
-            console.log(`json.access_token ${json.access_token}`)
-            const accessToken = json.access_token
-            const refreshToken = json.refresh_token
-            console.log(`accessToken => ${accessToken}`)
-            console.log(`refreshToken => ${refreshToken}`)
-            resultStatus.innerHTML = '認証成功！';
-        })
-        .catch(error => {
-            resultStatus.innerHTML = '何か問題があるようです';
-        })
-    }
+
 }
 
 
