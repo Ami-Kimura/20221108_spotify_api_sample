@@ -56,11 +56,11 @@ function getToken(code) {
         fetch('https://accounts.spotify.com/api/token',
             {
                 method: "POST",
-                body: {
-                    sendBody
-                },
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: {
+                    sendBody
                 }
             }
         )
