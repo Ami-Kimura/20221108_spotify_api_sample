@@ -55,6 +55,7 @@ function getToken(code) {
                 params.append('code', code)
                 params.append('redirect_uri', redirectUri)
                 params.append('grant_type', 'authorization_code')
+                params.append('client_secret', clientSecret)
                 params.append('client_id', clientId)
                 try {
                     const response = fetch("https://accounts.spotify.com/api/token", {
